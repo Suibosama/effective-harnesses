@@ -17,6 +17,8 @@
 - **会话恢复**: 每次打开项目自动恢复上下文
 - **进度追踪**: 实时查看项目完成状态
 - **Git 集成**: 自动记录每次工作内容
+- **单元测试**: 每个 feature 完成后必须通过测试验证
+- **代码规范**: 自动生成项目代码规范文档
 
 ## 快速开始
 
@@ -34,6 +36,7 @@ git clone https://github.com/Suibosama/effective-harnesses.git ~/.claude/skills/
 Claude 会询问：
 - 项目名称
 - 开发服务器启动命令
+- 测试命令（如 npm test、pytest 等）
 
 ### 3. 添加 Feature
 
@@ -72,13 +75,15 @@ Claude 会询问：
 | `feature_list.json` | 所有 feature 的状态清单 |
 | `init.sh` | 启动开发服务器的脚本 |
 | `claude-progress.txt` | 进度日志 |
+| `CODING_STANDARDS.md` | 项目代码规范 |
 
 ## feature_list.json 结构
 
 ```json
 {
-  "version": "1.0",
+  "version": "1.1",
   "project": "项目名称",
+  "test_command": "npm test",
   "features": [
     {
       "id": "feat-001",
@@ -86,12 +91,23 @@ Claude 会询问：
       "priority": 1,
       "description": "功能描述",
       "steps": ["步骤1", "步骤2"],
-      "status": "pending",
-      "passes": false
+      "test_command": "npm test",
+      "test_status": "passed",
+      "test_output": "测试输出摘要",
+      "status": "completed",
+      "passes": true
     }
   ]
 }
 ```
+
+## 单元测试要求
+
+每个 feature 完成后必须运行单元测试：
+
+1. **添加 feature 时**: 指定测试命令（如 `npm test`、`pytest` 等）
+2. **完成 feature 时**: 强制运行测试，只有测试通过才能标记为完成
+3. **测试状态**: feature 包含 `test_status` 字段，记录测试结果
 
 ## Category 类型
 
