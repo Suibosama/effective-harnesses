@@ -14,6 +14,7 @@ allowed-tools: ["Read", "Glob", "Grep", "Edit", "Write", "Bash", "Task", "AskUse
 - **状态追踪**: 所有 feature 状态必须记录在 feature_list.json 中
 - **会话恢复**: 每次会话开始时自动恢复上下文
 - **及时提交**: 会话结束时必须提交 git
+- **单元测试**: 每个 feature 完成后必须运行单元测试验证
 
 ## 可用命令
 
@@ -39,8 +40,9 @@ allowed-tools: ["Read", "Glob", "Grep", "Edit", "Write", "Bash", "Task", "AskUse
 
 ```json
 {
-  "version": "1.0",
+  "version": "1.1",
   "project": "项目名称",
+  "test_command": "npm test",
   "created": "2026-02-14",
   "features": [
     {
@@ -49,8 +51,11 @@ allowed-tools: ["Read", "Glob", "Grep", "Edit", "Write", "Bash", "Task", "AskUse
       "priority": 1,
       "description": "功能描述",
       "steps": ["步骤1", "步骤2", "步骤3"],
-      "status": "pending",
-      "passes": false
+      "test_command": "npm test",
+      "test_status": "passed",
+      "test_output": "测试输出摘要",
+      "status": "completed",
+      "passes": true
     }
   ]
 }
@@ -61,3 +66,22 @@ allowed-tools: ["Read", "Glob", "Grep", "Edit", "Write", "Bash", "Task", "AskUse
 - `functional`: 新功能开发
 - `bugfix`: Bug 修复
 - `refactor`: 代码重构
+
+## 单元测试要求
+
+每个 feature 完成后必须运行单元测试：
+
+1. **测试命令**: 在添加 feature 时需要指定测试命令（如 `npm test`、`pytest` 等）
+2. **测试验证**: 标记 feature 完成前必须运行测试并确认通过
+3. **测试覆盖**: 新功能应有对应的单元测试
+
+### feature 测试字段
+
+```json
+{
+  "id": "feat-001",
+  "test_command": "npm test",
+  "test_status": "passed", // pending, running, passed, failed
+  "test_output": "测试输出摘要"
+}
+```

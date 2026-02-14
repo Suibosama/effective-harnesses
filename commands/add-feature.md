@@ -36,6 +36,15 @@ ls feature_list.json
    - 2 (中)
    - 3 (低)
 
+5. **单元测试命令**（必填）
+   - 用于验证此功能的测试命令，如：
+     - `npm test` (JavaScript/TypeScript)
+     - `pytest` (Python)
+     - `go test ./...` (Go)
+     - `cargo test` (Rust)
+     - `mvn test` (Java)
+   - 如果暂无测试命令，填写 "none"，但需要在实现后补充测试
+
 ### 3. 读取现有 feature_list.json
 
 ```bash
@@ -60,6 +69,9 @@ Read feature_list.json
   "priority": 1,
   "description": "描述",
   "steps": ["步骤1", "步骤2"],
+  "test_command": "npm test",
+  "test_status": "pending",
+  "test_output": "",
   "status": "pending",
   "passes": false
 }

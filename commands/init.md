@@ -19,6 +19,7 @@ ls -la
 使用 AskUserQuestion 询问：
 - 项目名称
 - 开发服务器启动命令（如 `npm run dev`、`python manage.py runserver` 等）
+- 测试命令（如 `npm test`、`pytest` 等）
 - 项目描述（可选）
 
 ### 3. 创建 init.sh 脚本
@@ -69,7 +70,50 @@ Created: 2026-02-14
 - 2026-02-14: Project initialized
 ```
 
-### 7. 提交初始文件
+### 7. 创建代码规范文件 (CODING_STANDARDS.md)
+
+创建 `CODING_STANDARDS.md` 文件，包含项目的代码规范：
+
+```markdown
+# 代码规范
+
+## 1. 代码风格
+
+- 遵循项目默认的代码风格
+- 使用 ESLint/Prettier 进行代码格式化
+- 保持代码简洁、可读
+
+## 2. 命名规范
+
+- 变量/函数: camelCase
+- 常量: UPPER_SNAKE_CASE
+- 组件/类: PascalCase
+- 文件: kebab-case
+
+## 3. Git 提交规范
+
+- 使用 Conventional Commits 格式
+- feat: 新功能
+- fix: Bug 修复
+- refactor: 重构
+- docs: 文档更新
+- test: 测试相关
+- chore: 维护任务
+
+## 4. 测试要求
+
+- 每个功能必须有对应的单元测试
+- 测试覆盖率目标: > 80%
+- 运行测试: npm test
+
+## 5. 代码审查
+
+- 提交前自检
+- 确保无 console.log/debugger
+- 确保无未使用的变量
+```
+
+### 8. 提交初始文件
 
 ```bash
 git add .
